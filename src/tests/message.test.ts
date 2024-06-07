@@ -31,4 +31,21 @@ describe('Message Endpoints', () => {
     expect(res.statusCode).toEqual(200);
     expect(res.body.length).toBeGreaterThan(0);
   });
+
+  it('should delete the most recent message', async () => {
+    // Send a message first
+    await request(app)
+      .post('/api/messages/send')
+      .set('Authorization', `Bearer ${token}`)
+      .send({
+        message: 'Message to delete'
+      });
+
+    // Delete the most recent message
+    const res = await request(app)
+      .delete('/api/messages/recent')
+      .set('Authorization', `Bearer ${token}`);
+
+    expect(res.statusCode).toEqual(204);
+  });
 });
