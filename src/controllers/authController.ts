@@ -40,15 +40,34 @@ export const login = (req: LoginRequest, res: Response): void => {
   });
 };
 
-export const register = (req: RegisterRequest, res: Response): void => {
+export const register = (req: Request, res: Response): void => {
   const { username, password } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 10);
 
-  db.run("INSERT INTO users (username, password) VALUES (?, ?)", [username, hashedPassword], (err) => {
+  // Check if the username already exists
+  db.get('SELECT * FROM users WHERE username = ?', [username], (err, row) => {
     if (err) {
-      res.sendStatus(500);
-      return;
+      console.error('Error querying database:', err);
+      res.status(500).send('Internal server error');
+    } else if (row) {
+      res.status(400).send('Username already exists');
+    } else {
+      // Hash the password before storing it
+      bcrypt.hash(password, 10, (err, hashedPassword) => {
+        if (err) {
+          console.error('Error hashing password:', err);
+          res.status(500).send('Internal server error');
+        } else {
+          // Insert the user into the database with the hashed password
+          db.run('INSERT INTO users (username, password) VALUES (?, ?)', [username, hashedPassword], (err) => {
+            if (err) {
+              console.error('Error creating user:', err);
+              res.status(500).send('Internal server error');
+            } else {
+              res.sendStatus(201);
+            }
+          });
+        }
+      });
     }
-    res.sendStatus(201);
   });
 };
