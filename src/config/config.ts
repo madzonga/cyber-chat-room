@@ -1,4 +1,4 @@
 export const config = {
-    secret: 'your_secret_key'
+    secret: process.env.JWT_SECRET || 'random'
   };
   
