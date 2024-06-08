@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { config } from '../config/config';
 import { User } from '../models/userModel';
@@ -16,7 +16,8 @@ export const authenticateToken = (req: CustomRequest, res: Response, next: NextF
       res.sendStatus(403);
       return;
     }
-    req.user = user as User;
+    req.user = { username: (user as User).username }; 
+
     next();
   });
 };
