@@ -5,21 +5,14 @@ import db from '../database/database';
 import { config } from '../config/config';
 import { User } from '../models/userModel';
 
-interface LoginRequest extends Request {
+interface LoginOrRegisterRequest extends Request {
   body: {
     username: string;
     password: string;
   };
 }
 
-interface RegisterRequest extends Request {
-  body: {
-    username: string;
-    password: string;
-  };
-}
-
-export const login = (req: LoginRequest, res: Response): void => {
+export const login = (req: LoginOrRegisterRequest, res: Response): void => {
   const { username, password } = req.body;
 
   db.get("SELECT * FROM users WHERE username = ?", [username], (err, user: User) => {
@@ -40,7 +33,7 @@ export const login = (req: LoginRequest, res: Response): void => {
   });
 };
 
-export const register = (req: Request, res: Response): void => {
+export const register = (req: LoginOrRegisterRequest, res: Response): void => {
   const { username, password } = req.body;
 
   // Check if the username already exists
