@@ -1,5 +1,5 @@
 import request from "supertest";
-import app from "../app";
+import app from "../../app";
 
 describe("Validation Tests", () => {
     it("should return 400 for invalid register data", async () => {
