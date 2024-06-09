@@ -4,8 +4,7 @@ import app from "../../app";
 let token: string;
 
 beforeAll(async () => {
-    //todo create test database
-    // clear it after each run
+// TODO: fix database table drops before each run
     const uniqueUsername = `testuser_${Date.now()}`;
     await request(app).post("/api/auth/register").send({
         username: uniqueUsername,
