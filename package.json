@@ -8,8 +8,7 @@
     "build": "tsc",
     "dev": "nodemon --exec ts-node src/server.ts",
     "test": "jest --config jest.config.js",
-    "test:integration": "NODE_ENV=test jest --config jest.integration.config.js",
-    "create-user": "ts-node src/createUser.ts"
+    "test:integration": "NODE_ENV=test jest --config jest.integration.config.js"
   },
   "jest": {
     "transform": {

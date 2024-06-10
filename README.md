@@ -53,7 +53,6 @@ This script is useful for testing the WebSocket functionality and understanding 
 - **npm run dev**: Start the server in development mode with nodemon.
 - **npm test**: Run unit tests using Jest.
 - **npm run test:integration**: Run integration tests in a test environment using Jest.
-- **npm run create-user**: Create a new user in the database.
 
 ## Postman Collection
 
@@ -62,6 +61,6 @@ The `Chatroom API.postman_collection.json` file contains a collection of request
 ## Additional Setup
 
 - **Node Version**: Node.js version 20.x is recommended.
-- Ensure that you have Node.js and SQLite installed on your system before running the server. You may need to set up environment variables for database configurations if necessary.
+- Ensure that you have Node.js installed on your system before running the server. You may need to set up environment variables for database configurations if necessary.
 
 Feel free to reach out if you encounter any issues or have any questions!
