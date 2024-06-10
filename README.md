@@ -24,11 +24,16 @@ This project implements a simple chat room server using Node.js and SQLite. The 
 - **GET /api/messages/history**: Retrieve chat history (requires authentication).
 - **DELETE /api/messages/delete/:id**: Delete a message by ID (requires authentication).
 
+## Setup
+
+1. `git clone git@github.com:madzonga/cyber-chat-room.git`
+2. `cd cyber-chat-room`
+3. **Install Dependencies** `npm install`
+
 ## Running the Server
 
-1. **Install Dependencies**: `npm install`
-2. **Start Server**: `npm run start`
-3. **Test Endpoints**: Use Postman or similar tool to test the API endpoints.
+1. **Start Server**: `npm run start`
+2. **Test Endpoints**: Use Postman or similar tool to test the API endpoints.
 
 ## WebSocket Feature
 
