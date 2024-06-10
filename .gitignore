@@ -2,3 +2,4 @@ node_modules
 chatroom.db
 test-chatroom.db
 .env
+dist
