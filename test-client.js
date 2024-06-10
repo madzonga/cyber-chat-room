@@ -5,6 +5,8 @@ const socket = io('http://localhost:4000');
 
 socket.on('connect', () => {
   console.log('Connected to the server');
+  // Join the chat room
+  socket.emit('joinRoom', 'testuser');
   // Send a test message
   socket.emit('chatMessage', { username: 'testuser', message: 'Hello, world!' });
   socket.emit('chatMessage', { username: 'testuser', message: 'This is just a test!!' });
