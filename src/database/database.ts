@@ -13,7 +13,7 @@ const db = new sqlite3.Database(dbFile, (err) => {
 });
 
 db.serialize(() => {
-  db.run("CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT)", (err) => {
+  db.run('CREATE TABLE IF NOT EXISTS users (username TEXT PRIMARY KEY, password TEXT, room TEXT)', (err) => {
     if (err) {
       console.error('Error creating users table:', err);
     } else {
@@ -21,7 +21,7 @@ db.serialize(() => {
     }
   });
 
-  db.run("CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, message TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)", (err) => {
+  db.run('CREATE TABLE IF NOT EXISTS messages (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, room TEXT, message TEXT, timestamp DATETIME DEFAULT CURRENT_TIMESTAMP)', (err) => {
     if (err) {
       console.error('Error creating messages table:', err);
     } else {

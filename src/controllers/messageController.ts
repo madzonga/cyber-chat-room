@@ -1,6 +1,7 @@
 import { Response } from 'express';
 import db from '../database/database';
 import { CustomRequest } from '../types/custom';
+import { User } from '../models/userModel';
 
 interface MessageRow {
   id: number;
@@ -16,17 +17,31 @@ export const sendMessage = (req: CustomRequest, res: Response): void => {
   const { message } = req.body;
   const username = req.user.username;
 
-  db.run("INSERT INTO messages (username, message) VALUES (?, ?)", [username, message], (err) => {
-    if (err) {
+  db.get('SELECT room FROM users WHERE username = ?', [username], (err, row: User) => {
+    if (err || !row) {
       res.sendStatus(500);
       return;
     }
-    res.sendStatus(201);
+
+    const room = row.room;
+
+    if (room) {
+      db.run('INSERT INTO messages (username, room, message) VALUES (?, ?, ?)', [username, room, message], (err) => {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(201);
+        }
+      });
+    } else {
+      res.status(400).send('User has not joined a room');
+    }
   });
 };
 
 export const getChatHistory = (req: CustomRequest, res: Response): void => {
-  db.all("SELECT username, message, timestamp FROM messages ORDER BY timestamp DESC", (err, rows) => {
+  const { room } = req.params;
+  db.all('SELECT * FROM messages WHERE room = ?', [room], (err, rows) => {
     if (err) {
       res.sendStatus(500);
       return;

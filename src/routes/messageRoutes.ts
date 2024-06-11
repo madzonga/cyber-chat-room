@@ -10,7 +10,7 @@ const router: Router = Router();
 router.post('/send', authenticateToken, validateUser, validate(messageSchema), sendMessage);
 
 // Get chat history route
-router.get('/history', authenticateToken, getChatHistory);
+router.get('/history/:room', authenticateToken, getChatHistory);
 
 // Delete message by id
 router.delete('/delete/:id', authenticateToken, deleteMessageById); 
