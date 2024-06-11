@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9389ebb9-05c4-4c5e-8d2e-5002b0e3b5a2",
+		"_postman_id": "9ed72056-73d4-48f0-ba81-96716e5474f9",
 		"name": "Chatroom API Postman",
 		"description": "API for managing chat messages and user authentication in a chatroom",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -43,6 +43,21 @@
 				},
 				{
 					"name": "Login User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Extract token and set as global variable\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.globals.set(\"authToken\", jsonData.token);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -78,6 +93,43 @@
 			"name": "Messages",
 			"item": [
 				{
+					"name": "Join Room",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"room\": \"general\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/rooms/join",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"rooms",
+								"join"
+							]
+						},
+						"description": "Join a chat room. Requires authentication."
+					},
+					"response": []
+				},
+				{
 					"name": "Send Message",
 					"request": {
 						"method": "POST",
@@ -90,7 +142,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"message\": \"Hello, world!\"\n}",
+							"raw": "{\n  \"message\": \"Hello, world!\",\n  \"room\": \"general\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -145,6 +197,16 @@
 				{
 					"name": "Delete Message by ID",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{authToken}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -154,7 +216,7 @@
 							}
 						],
 						"url": {
-							"raw": "http://localhost:4000/api/messages/delete/:id",
+							"raw": "http://localhost:4000/api/messages/delete/7",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -164,13 +226,7 @@
 								"api",
 								"messages",
 								"delete",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "1"
-								}
+								"7"
 							]
 						},
 						"description": "Deletes a message by its ID. Requires authentication."
