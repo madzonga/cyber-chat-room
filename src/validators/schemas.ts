@@ -11,5 +11,10 @@ export const loginSchema = Joi.object({
 });
 
 export const messageSchema = Joi.object({
-  message: Joi.string().max(500).required()
+  message: Joi.string().max(500).required(),
+  room: Joi.string().min(3).max(30).required()
 });
+
+export const joinRoomSchema = Joi.object({
+  room: Joi.string().min(3).max(30).required(),
+})
