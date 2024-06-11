@@ -2,7 +2,6 @@ import { Response } from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import db from '../../database/database';
-import { config } from '../../config/config';
 import { User } from '../../models/userModel';
 import { login, register } from '../../controllers/authController';
 
