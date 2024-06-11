@@ -2,6 +2,18 @@
 
 This project implements a simple chat room server using Node.js and SQLite. The server provides functionality for user authentication, joining chat rooms, sending messages, and retrieving chat history. All messages are stored in chat rooms represented by the `messages` table in the SQLite database.
 
+## Setup
+
+1. `git clone git@github.com:madzonga/cyber-chat-room.git`
+2. `cd cyber-chat-room`
+3. `git checkout main`
+4. **Install Dependencies**: `npm install`
+
+## Running the Server
+
+1. **Start Server**: `npm run start`
+2. **Test Endpoints**: Use Postman or similar tool to test the API endpoints.
+
 ## Features
 
 1. **User Authentication**: Users can register and log in using a username and password. Credentials are verified against a SQLite database.
@@ -45,17 +57,6 @@ AWS ELB offers a scalable solution for managing incoming traffic, ensuring optim
 - **GET /api/messages/history/:room**: Retrieve chat history for a specific room (requires authentication).
 - **DELETE /api/messages/delete/:id**: Delete a message by ID (requires authentication).
 - **POST /api/rooms/join**: Join a specific chat room (requires authentication).
-
-## Setup
-
-1. `git clone git@github.com:madzonga/cyber-chat-room.git`
-2. `cd cyber-chat-room`
-3. **Install Dependencies**: `npm install`
-
-## Running the Server
-
-1. **Start Server**: `npm run start`
-2. **Test Endpoints**: Use Postman or similar tool to test the API endpoints.
 
 ## WebSocket Feature
 
