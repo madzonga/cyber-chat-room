@@ -101,3 +101,8 @@ The collection includes:
 - Ensure that you have Node.js installed on your system before running the server. You may need to set up environment variables for database configurations if necessary.
 
 Feel free to reach out if you encounter any issues or have any questions!
+
+## Author
+
+Glenn Madzonga
+https://www.linkedin.com/in/glenn-madzonga-37863082/
