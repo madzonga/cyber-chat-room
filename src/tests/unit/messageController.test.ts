@@ -27,7 +27,7 @@ describe("Message Controller", () => {
     describe("sendMessage", () => {
         it("should send a message", () => {
             req.body.message = "Hello, world!";
-            req.body.room = "general"; // Added room
+            req.body.room = "general"; 
 
             (db.get as jest.Mock).mockImplementationOnce(
                 (query, params, callback) => callback(null, { room: "general" })
@@ -53,7 +53,7 @@ describe("Message Controller", () => {
 
         it("should handle errors when sending a message", () => {
             req.body.message = "Hello, world!";
-            req.body.room = "general"; // Added room
+            req.body.room = "general";
 
             (db.get as jest.Mock).mockImplementationOnce(
                 (query, params, callback) => callback(null, { room: "general" })
@@ -86,15 +86,15 @@ describe("Message Controller", () => {
           { username: 'user2', message: 'Message 2', room: 'general', timestamp: '2022-01-01 12:10:00' }
         ];
     
-        (db.all as jest.Mock).mockImplementationOnce((query, params, callback) => callback(null, mockRows)); // Updated implementation
+        (db.all as jest.Mock).mockImplementationOnce((query, params, callback) => callback(null, mockRows));
     
-        req.params.room = 'general'; // Updated room parameter
+        req.params.room = 'general';
     
         getChatHistory(req, res);
     
         expect(db.all).toHaveBeenCalledWith(
-          "SELECT * FROM messages WHERE room = ?", // Updated query
-          ['general'], // Updated params
+          "SELECT * FROM messages WHERE room = ?",
+          ['general'],
           expect.any(Function)
         );
         expect(res.json).toHaveBeenCalledWith(mockRows);

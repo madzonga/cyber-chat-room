@@ -10,7 +10,7 @@ describe('Auth Endpoints', () => {
     const res = await request(app)
       .post('/api/auth/register')
       .send({
-        username: uniqueUsername, // Ensure a unique username
+        username: uniqueUsername, 
         password: 'testpassword'
       });
     expect(res.statusCode).toEqual(201);
@@ -21,7 +21,7 @@ describe('Auth Endpoints', () => {
     const registerRes = await request(app)
       .post('/api/auth/register')
       .send({
-        username: uniqueUsername2, // Ensure a unique username
+        username: uniqueUsername2, 
         password: 'testpassword'
       });
 

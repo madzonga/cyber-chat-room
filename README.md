@@ -1,6 +1,6 @@
 # cyber-chat-room
 
-This project implements a simple chat room server using Node.js and SQLite. The server provides functionality for user authentication, joining chat rooms, sending messages, and retrieving chat history. All messages are stored in chat rooms represented by the `messages` table in the SQLite database.
+This project implements a simple chat room server using Node.js and SQLite. The server provides functionality for user authentication, joining chat rooms, sending messages, and retrieving chat history. It does this using RESTful apis and Web Sockets. All messages are stored in chat rooms represented by the `messages` table in the SQLite database.
 
 ## Setup
 

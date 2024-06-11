@@ -4,7 +4,8 @@ import app from "../../app";
 let token: string;
 
 beforeAll(async () => {
-    // TODO: fix database table drops before each run
+    // TODO: DROP the DB before each integration test
+
     const uniqueUsername = `testuser_${Date.now()}`;
     await request(app).post("/api/auth/register").send({
         username: uniqueUsername,
@@ -33,7 +34,7 @@ describe("Message Endpoints", () => {
             .set("Authorization", `Bearer ${token}`)
             .send({
                 message: "Hello, world!",
-                room: "general", // Include the room field
+                room: "general", 
             });
         expect(res.statusCode).toEqual(201);
     });
