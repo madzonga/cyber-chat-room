@@ -21,7 +21,14 @@ This project implements a simple chat room server using Node.js and SQLite. The 
 3. **Persistent Storage**: Messages are stored in a SQLite database to ensure they persist across server restarts.
 4. **Message Sending and Receiving**: Users can send and receive messages in real-time.
 5. **RESTful Endpoints**: RESTful endpoints are provided for user management, sending messages, retrieving chat history, joining rooms, and deleting messages by ID.
-6. **WebSocket Integration**: WebSocket support allows for real-time communication between clients, enhancing the chat experience.
+
+
+## Bonus Features Implemented
+
+1. **WebSocket Integration**: WebSocket support allows for real-time communication between clients, enhancing the chat experience. This was done in the `websocket` branch
+2. **Message deletion**: Message deletion by clients using the API, DELETE /api/messages/delete/:id
+3. **CI/CD skeleton**: CI?CD skeleton for a Github actions pipeline.
+4. **Server scalability**: Description of how the scalability will work in the next section in the README.
 
 ## Server Scalability with AWS Elastic Load Balancer (ELB)
 
